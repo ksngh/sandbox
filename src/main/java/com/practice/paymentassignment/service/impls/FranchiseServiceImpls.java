@@ -4,8 +4,10 @@ import com.practice.paymentassignment.model.entity.Franchise;
 import com.practice.paymentassignment.repository.FranchiseRepository;
 import com.practice.paymentassignment.service.FranchiseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
+@Service
 public class FranchiseServiceImpls implements FranchiseService {
 
     private final FranchiseRepository franchiseRepository;

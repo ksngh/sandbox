@@ -4,8 +4,10 @@ import com.practice.paymentassignment.model.entity.PaymentClaim;
 import com.practice.paymentassignment.repository.PaymentClaimRepository;
 import com.practice.paymentassignment.repository.jpa.PaymentClaimJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
+@Repository
 public class PaymentClaimRepositoryImpls implements PaymentClaimRepository {
 
     private final PaymentClaimJpaRepository paymentClaimJpaRepository;

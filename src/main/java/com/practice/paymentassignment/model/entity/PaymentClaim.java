@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "payment_claim")
+@Table(name = "payment_claims")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PaymentClaim {
@@ -32,15 +32,15 @@ public class PaymentClaim {
     @Column(name = "status", nullable = false, length = 30)
     private PaymentClaimStatus status;
 
-    private PaymentClaim(User user, Franchise franchise, Long amount, PaymentClaimStatus status) {
+    private PaymentClaim(User user, Franchise franchise, Long amount) {
         this.user = user;
         this.franchise = franchise;
         this.amount = amount;
-        this.status = status;
+        this.status = PaymentClaimStatus.PENDING;
     }
 
-    public static PaymentClaim of(User user, Franchise franchise, Long amount, PaymentClaimStatus status) {
-        return new PaymentClaim(user, franchise, amount, status);
+    public static PaymentClaim of(User user, Franchise franchise, Long amount) {
+        return new PaymentClaim(user, franchise, amount);
     }
 
 }

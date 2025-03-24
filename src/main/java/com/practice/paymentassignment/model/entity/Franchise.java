@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "franchise")
+@Table(name = "franchises")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Franchise {
@@ -18,4 +18,12 @@ public class Franchise {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
+
+    private Franchise(String name){
+        this.name = name;
+    }
+
+    public static Franchise of(String name){
+        return new Franchise(name);
+    }
 }

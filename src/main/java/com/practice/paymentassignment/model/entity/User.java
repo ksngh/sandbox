@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class User {
@@ -21,6 +21,13 @@ public class User {
     @Column(nullable = false, name = "balance")
     private Long balance;
 
+    private User(String name) {
+        this.name = name;
+        this.balance = 0L;
+    }
 
+    public static User of(String name) {
+        return new User(name);
+    }
 
 }

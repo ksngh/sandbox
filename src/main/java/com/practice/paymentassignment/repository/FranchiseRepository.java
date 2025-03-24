@@ -14,4 +14,11 @@ public interface FranchiseRepository {
      * @return Optional<Franchise>
      */
     Optional<Franchise> findById(Long id);
+
+    /**
+     * 가맹점 정보를 저장합니다
+     * @param franchise
+     * @return Franchise
+     */
+    Franchise save(Franchise franchise);
 }

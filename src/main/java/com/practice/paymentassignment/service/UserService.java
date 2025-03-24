@@ -1,5 +1,6 @@
 package com.practice.paymentassignment.service;
 
+import com.practice.paymentassignment.model.dto.user.UserCreate;
 import com.practice.paymentassignment.model.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +13,11 @@ public interface UserService {
      * @return User
      */
     User getById(Long id);
+
+    /**
+     * 회원가입
+     * @param userCreateRequest
+     * @return Long
+     */
+    UserCreate.Response create(UserCreate.Request userCreateRequest);
 }

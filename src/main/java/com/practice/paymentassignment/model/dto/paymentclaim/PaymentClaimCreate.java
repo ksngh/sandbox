@@ -12,14 +12,14 @@ public class PaymentClaimCreate {
 
     @Getter
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class Request{
         private Long userId;
         private Long amount;
         private Long franchiseId;
-        private PaymentClaimStatus status;
 
-        public PaymentClaim toEntity(User user, Franchise franchise, Long amount,PaymentClaimStatus status){
-            return PaymentClaim.of(user,franchise,amount,status);
+        public PaymentClaim toEntity(User user, Franchise franchise, Long amount){
+            return PaymentClaim.of(user,franchise,amount);
         }
 
     }
