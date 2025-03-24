@@ -22,4 +22,13 @@ public class Payment {
 
     @Column(name = "success_yn", nullable = false)
     private Boolean successYn;
+
+    private Payment(PaymentClaim paymentClaim) {
+        this.paymentClaim = paymentClaim;
+        this.successYn = false;
+    }
+
+    public static Payment of(PaymentClaim paymentClaim) {
+        return new Payment(paymentClaim);
+    }
 }
