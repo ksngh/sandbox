@@ -32,4 +32,15 @@ public class PaymentClaim {
     @Column(name = "status", nullable = false, length = 30)
     private PaymentClaimStatus status;
 
+    private PaymentClaim(User user, Franchise franchise, Long amount, PaymentClaimStatus status) {
+        this.user = user;
+        this.franchise = franchise;
+        this.amount = amount;
+        this.status = status;
+    }
+
+    public static PaymentClaim of(User user, Franchise franchise, Long amount, PaymentClaimStatus status) {
+        return new PaymentClaim(user, franchise, amount, status);
+    }
+
 }
