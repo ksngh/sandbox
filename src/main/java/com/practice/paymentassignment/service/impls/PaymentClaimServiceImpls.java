@@ -18,6 +18,7 @@ public class PaymentClaimServiceImpls implements PaymentClaimService {
 
     private final UserService userService;
     private final FranchiseService franchiseService;
+    private final PaymentClaimRepository paymentClaimRepository;
 
     @Override
     @Transactional
@@ -30,5 +31,10 @@ public class PaymentClaimServiceImpls implements PaymentClaimService {
                 paymentClaimCreateRequest.getAmount()
         );
         return PaymentClaimCreate.Response.fromEntity(paymentClaim);
+    }
+
+    @Override
+    public PaymentClaim getPaymentClaim(Long paymentClaimId) {
+        return paymentClaimRepository.findById(paymentClaimId).orElseThrow(NullPointerException::new);
     }
 }

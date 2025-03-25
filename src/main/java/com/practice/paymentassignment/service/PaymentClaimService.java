@@ -1,6 +1,7 @@
 package com.practice.paymentassignment.service;
 
 import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimCreate;
+import com.practice.paymentassignment.model.entity.PaymentClaim;
 
 public interface PaymentClaimService {
 
@@ -11,5 +12,6 @@ public interface PaymentClaimService {
      */
     PaymentClaimCreate.Response createPaymentClaim(PaymentClaimCreate.Request paymentClaimCreateRequest);
 
+    PaymentClaim getPaymentClaim(Long paymentClaimId);
 
 }

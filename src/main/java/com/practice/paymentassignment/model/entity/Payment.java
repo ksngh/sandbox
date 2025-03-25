@@ -23,6 +23,10 @@ public class Payment {
     @Column(name = "success_yn", nullable = false)
     private Boolean successYn;
 
+    public void paySuccessfully() {
+        this.successYn = true;
+    }
+
     private Payment(PaymentClaim paymentClaim) {
         this.paymentClaim = paymentClaim;
         this.successYn = false;

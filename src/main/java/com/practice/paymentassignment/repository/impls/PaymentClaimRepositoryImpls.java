@@ -6,6 +6,8 @@ import com.practice.paymentassignment.repository.jpa.PaymentClaimJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Repository
 public class PaymentClaimRepositoryImpls implements PaymentClaimRepository {
@@ -15,6 +17,11 @@ public class PaymentClaimRepositoryImpls implements PaymentClaimRepository {
     @Override
     public PaymentClaim save(PaymentClaim paymentClaim) {
         return paymentClaimJpaRepository.save(paymentClaim);
+    }
+
+    @Override
+    public Optional<PaymentClaim> findById(Long paymentClaimId) {
+        return paymentClaimJpaRepository.findById(paymentClaimId);
     }
 
 }

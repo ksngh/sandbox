@@ -6,6 +6,10 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "payment_claims")
 @Getter
@@ -32,6 +36,9 @@ public class PaymentClaim {
     @Column(name = "status", nullable = false, length = 30)
     private PaymentClaimStatus status;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Payment> payments = new HashSet<>();
+
     private PaymentClaim(User user, Franchise franchise, Long amount) {
         this.user = user;
         this.franchise = franchise;
@@ -41,6 +48,10 @@ public class PaymentClaim {
 
     public static PaymentClaim of(User user, Franchise franchise, Long amount) {
         return new PaymentClaim(user, franchise, amount);
+    }
+
+    public void payCompleted(){
+        this.status = PaymentClaimStatus.COMPLETED;
     }
 
 }
