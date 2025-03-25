@@ -1,6 +1,7 @@
 package com.practice.paymentassignment.service.impls;
 
 import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimCreate;
+import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimDetails;
 import com.practice.paymentassignment.model.entity.Franchise;
 import com.practice.paymentassignment.model.entity.PaymentClaim;
 import com.practice.paymentassignment.model.entity.User;
@@ -36,5 +37,12 @@ public class PaymentClaimServiceImpls implements PaymentClaimService {
     @Override
     public PaymentClaim getPaymentClaim(Long paymentClaimId) {
         return paymentClaimRepository.findById(paymentClaimId).orElseThrow(NullPointerException::new);
+    }
+
+    @Override
+    @Transactional
+    public PaymentClaimDetails.Response getPaymentClaimDetails(Long paymentClaimId) {
+        PaymentClaim paymentClaim = getPaymentClaim(paymentClaimId);
+        return PaymentClaimDetails.Response.fromEntity(paymentClaim.getFranchise(), paymentClaim);
     }
 }

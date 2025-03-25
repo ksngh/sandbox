@@ -18,4 +18,5 @@ public class PaymentController {
         PaymentCreate.Response response = paymentService.create(paymentClaimId);
         return ResponseEntity.ok(response);
     }
+
 }
