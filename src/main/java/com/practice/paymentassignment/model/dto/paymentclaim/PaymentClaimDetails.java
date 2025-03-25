@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 
 public class PaymentClaimDetails {
 
-    public static class Request{
-
-    }
-
     @NoArgsConstructor
     @AllArgsConstructor
     @Getter

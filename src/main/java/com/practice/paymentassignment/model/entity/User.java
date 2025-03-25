@@ -30,4 +30,12 @@ public class User {
         return new User(name);
     }
 
+    public void charge(int amount) {
+        balance += amount;
+    }
+
+    public void pay(int amount) {
+        balance -= amount;
+    }
+
 }

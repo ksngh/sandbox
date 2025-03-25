@@ -48,7 +48,6 @@ class PaymentClaimServiceImplsTest {
         PaymentClaimCreate.Response paymentClaimCreateResponse = paymentClaimService.createPaymentClaim(paymentClaimCreateRequest);
 
         //then
-        //todo: 수정할 것
         assertNotNull(paymentClaimCreateResponse);
 
     }
