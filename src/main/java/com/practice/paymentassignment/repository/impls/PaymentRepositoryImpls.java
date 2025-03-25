@@ -2,6 +2,7 @@ package com.practice.paymentassignment.repository.impls;
 
 import com.practice.paymentassignment.model.entity.Payment;
 import com.practice.paymentassignment.model.entity.PaymentClaim;
+import com.practice.paymentassignment.model.enums.PaymentStatus;
 import com.practice.paymentassignment.repository.PaymentRepository;
 import com.practice.paymentassignment.repository.jpa.PaymentJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,8 @@ public class PaymentRepositoryImpls implements PaymentRepository {
     }
 
     @Override
-    public Boolean existsPaymentByPaymentClaimAndSuccessYnIsTrue(PaymentClaim paymentClaim) {
-        return paymentJpaRepository.existsPaymentByPaymentClaimAndSuccessYnIsTrue(paymentClaim);
+    public Boolean existsPaymentByPaymentClaimAndPaymentStatusIs(PaymentClaim paymentClaim, PaymentStatus paymentStatus) {
+        return paymentJpaRepository.existsPaymentByPaymentClaimAndPaymentStatusIs(paymentClaim, paymentStatus);
     }
-
-
 
 }

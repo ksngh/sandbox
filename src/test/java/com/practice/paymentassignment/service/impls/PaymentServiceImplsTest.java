@@ -44,14 +44,16 @@ class PaymentServiceImplsTest {
     private final AtomicInteger successCount = new AtomicInteger(0);
     private final AtomicInteger abortCount = new AtomicInteger(0);
     private PaymentClaim savedPaymentClaim;
+    private User savedUser;
+    private Franchise savedFranchise;
 
     @BeforeEach
     void setUp() {
         User user = User.of("김성호");
-        userRepository.save(user);
+        savedUser = userRepository.save(user);
 
         Franchise franchise = Franchise.of("스마트핀테크 가맹점");
-        franchiseRepository.save(franchise);
+        savedFranchise = franchiseRepository.save(franchise);
 
         PaymentClaim paymentClaim = PaymentClaim.of(user,franchise,30000L);
         savedPaymentClaim = paymentClaimRepository.save(paymentClaim);
@@ -67,6 +69,7 @@ class PaymentServiceImplsTest {
         PaymentCreate.Response paymentCreateResponse = paymentService.create(paymentClaimId);
 
         //then
+        System.out.println(paymentCreateResponse.getId());
         assertNotNull(paymentCreateResponse);
 
     }
@@ -75,21 +78,28 @@ class PaymentServiceImplsTest {
     @DisplayName("동시에 결제 요청을 여러번 할 시, 하나만 성공")
     void testSerializableTransactionConcurrency() throws InterruptedException {
         //given
-        Long paymentClaimId = 1L;
         ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
         long startTime = System.nanoTime();
         CountDownLatch latch = new CountDownLatch(THREAD_COUNT * EXECUTIONS_PER_THREAD);
 
         //when
+        for (int i = 0; i < 100; i++) {
+            PaymentClaim paymentClaim = PaymentClaim.of(savedUser,savedFranchise,30000L);
+            savedPaymentClaim = paymentClaimRepository.save(paymentClaim);
+        }
+
         for (int i = 0; i < THREAD_COUNT; i++) {
             executor.submit(() -> {
                 for (int j = 0; j < EXECUTIONS_PER_THREAD; j++) {
                     try {
-                        paymentService.create(paymentClaimId);
+                        PaymentCreate.Response response = paymentService.create((long) j);
+                        paymentService.paySuccessfully(response.getId());
                         successCount.incrementAndGet();
                     } catch (Exception e) {
                         if (isSerializationFailure(e)) {
                             abortCount.incrementAndGet();
+                        } else if (e instanceof IllegalStateException) {
+                            System.out.println(e.getMessage());
                         } else {
                             e.printStackTrace();
                         }
@@ -108,9 +118,11 @@ class PaymentServiceImplsTest {
         System.out.println("걸린 시간 (초): " + elapsed / 1_000_000_000.0);
     }
 
+
     private boolean isSerializationFailure(Throwable e) {
         while (e != null) {
-            if (e.getMessage().contains("could not serialize access")) {
+            if (e instanceof org.postgresql.util.PSQLException &&
+                    e.getMessage().contains("could not serialize access")) {
                 return true;
             }
             e = e.getCause();

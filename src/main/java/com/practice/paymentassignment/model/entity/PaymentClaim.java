@@ -36,7 +36,7 @@ public class PaymentClaim {
     @Column(name = "status", nullable = false, length = 30)
     private PaymentClaimStatus status;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "paymentClaim", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Payment> payments = new HashSet<>();
 
     private PaymentClaim(User user, Franchise franchise, Long amount) {

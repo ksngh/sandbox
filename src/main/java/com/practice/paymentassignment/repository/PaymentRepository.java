@@ -2,6 +2,7 @@ package com.practice.paymentassignment.repository;
 
 import com.practice.paymentassignment.model.entity.Payment;
 import com.practice.paymentassignment.model.entity.PaymentClaim;
+import com.practice.paymentassignment.model.enums.PaymentStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -28,6 +29,6 @@ public interface PaymentRepository {
      * @param paymentClaim
      * @return Payment
      */
-    Boolean existsPaymentByPaymentClaimAndSuccessYnIsTrue(PaymentClaim paymentClaim);
+    Boolean existsPaymentByPaymentClaimAndPaymentStatusIs(PaymentClaim paymentClaim, PaymentStatus paymentStatus);
 
 }

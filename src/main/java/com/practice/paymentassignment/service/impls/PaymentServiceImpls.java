@@ -4,6 +4,7 @@ import com.practice.paymentassignment.model.dto.payment.PaymentCreate;
 import com.practice.paymentassignment.model.dto.payment.PaymentPay;
 import com.practice.paymentassignment.model.entity.Payment;
 import com.practice.paymentassignment.model.entity.PaymentClaim;
+import com.practice.paymentassignment.model.enums.PaymentStatus;
 import com.practice.paymentassignment.repository.PaymentClaimRepository;
 import com.practice.paymentassignment.repository.PaymentRepository;
 import com.practice.paymentassignment.service.PaymentClaimService;
@@ -20,7 +21,6 @@ public class PaymentServiceImpls implements PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final PaymentClaimService paymentClaimService;
-    private final PaymentClaimRepository paymentClaimRepository;
 
     @Override
 //    @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -29,7 +29,6 @@ public class PaymentServiceImpls implements PaymentService {
         PaymentClaim paymentClaim = paymentClaimService.getPaymentClaim(paymentClaimId);
         validateUniqueness(paymentClaim);
         Payment payment = Payment.of(paymentClaim);
-        paymentClaim.getPayments().add(payment);
         return PaymentCreate.Response.fromEntity(paymentRepository.save(payment));
     }
 
@@ -48,8 +47,8 @@ public class PaymentServiceImpls implements PaymentService {
     }
 
     private void validateUniqueness(PaymentClaim paymentClaim) {
-        if(!paymentRepository.existsPaymentByPaymentClaimAndSuccessYnIsTrue(paymentClaim)){
-            throw new IllegalStateException("이미 결제 처리 되었습니다.");
+        if (paymentRepository.existsPaymentByPaymentClaimAndPaymentStatusIs(paymentClaim, PaymentStatus.PENDING)) {
+            throw new IllegalStateException("결제가 이미 진행중입니다.");
         }
     }
 
