@@ -1,7 +1,7 @@
 package com.practice.paymentassignment.controller;
 
-import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimDetails;
 import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimCreate;
+import com.practice.paymentassignment.model.dto.paymentclaim.PaymentClaimDetails;
 import com.practice.paymentassignment.service.PaymentClaimService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

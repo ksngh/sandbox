@@ -9,15 +9,20 @@ import java.util.Optional;
 public interface UserRepository {
     /**
      * ID로 사용자를 조회합니다.
-     * @param id
-     * return Optional<User>
+     *
+     * @param id return Optional<User>
      */
     Optional<User> findById(Long id);
 
     /**
      * 사용자 정보를 저장합니다.
-     * @param user
-     * return Optional<User>
+     *
+     * @param user return Optional<User>
      */
     User save(User user);
+
+    /**
+     * 모든 user 엔티티를 삭제합니다.
+     */
+    void deleteAll();
 }

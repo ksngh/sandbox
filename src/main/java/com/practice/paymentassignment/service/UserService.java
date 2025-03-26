@@ -9,6 +9,7 @@ public interface UserService {
 
     /**
      * ID로 유저를 조회합니다.
+     *
      * @param id
      * @return User
      */
@@ -16,6 +17,7 @@ public interface UserService {
 
     /**
      * 회원가입
+     *
      * @param userCreateRequest
      * @return Long
      */

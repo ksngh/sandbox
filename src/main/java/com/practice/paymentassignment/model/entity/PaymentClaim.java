@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,7 +49,7 @@ public class PaymentClaim {
         return new PaymentClaim(user, franchise, amount);
     }
 
-    public void payCompleted(){
+    public void payCompleted() {
         this.status = PaymentClaimStatus.COMPLETED;
     }
 

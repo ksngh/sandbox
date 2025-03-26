@@ -24,4 +24,9 @@ public class PaymentClaimRepositoryImpls implements PaymentClaimRepository {
         return paymentClaimJpaRepository.findById(paymentClaimId);
     }
 
+    @Override
+    public void deleteAll() {
+        paymentClaimJpaRepository.deleteAll();
+    }
+
 }

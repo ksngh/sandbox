@@ -31,11 +31,11 @@ public class User {
     }
 
     public void charge(int amount) {
-        balance += amount;
+        this.balance += amount;
     }
 
     public void pay(int amount) {
-        balance -= amount;
+        this.balance -= amount;
     }
 
 }

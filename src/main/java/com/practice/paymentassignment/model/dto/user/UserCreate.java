@@ -12,7 +12,7 @@ public class UserCreate {
     public static class Request {
         private String name;
 
-        public User toEntity(Request request){
+        public User toEntity(Request request) {
             return User.of(request.name);
         }
     }
@@ -21,7 +21,7 @@ public class UserCreate {
     public static class Response {
         private Long id;
 
-        public static Response fromEntity(User user){
+        public static Response fromEntity(User user) {
             return new Response(user.getId());
         }
 

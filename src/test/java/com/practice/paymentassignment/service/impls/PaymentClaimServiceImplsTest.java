@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @DisplayName("결제 요청 서비스 테스트")
@@ -48,7 +48,7 @@ class PaymentClaimServiceImplsTest {
         PaymentClaimCreate.Response paymentClaimCreateResponse = paymentClaimService.createPaymentClaim(paymentClaimCreateRequest);
 
         //then
-        assertNotNull(paymentClaimCreateResponse);
+        assertEquals(1L, paymentClaimCreateResponse.getId());
 
     }
 }

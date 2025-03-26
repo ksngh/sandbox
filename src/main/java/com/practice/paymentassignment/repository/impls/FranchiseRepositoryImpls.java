@@ -23,4 +23,9 @@ public class FranchiseRepositoryImpls implements FranchiseRepository {
     public Franchise save(Franchise franchise) {
         return franchiseJpaRepository.save(franchise);
     }
+
+    @Override
+    public void deleteAll() {
+        franchiseJpaRepository.deleteAll();
+    }
 }

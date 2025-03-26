@@ -7,6 +7,7 @@ public interface PaymentService {
 
     /**
      * 결제 시도 시 Payment를 생성합니다.
+     *
      * @param paymentClaimId
      * @return PaymentCreate.Response
      */
@@ -14,6 +15,7 @@ public interface PaymentService {
 
     /**
      * ID로 결제를 조회합니다.
+     *
      * @param paymentId
      * @return Payment
      */

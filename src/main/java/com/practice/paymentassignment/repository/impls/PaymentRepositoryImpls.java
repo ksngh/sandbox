@@ -31,4 +31,9 @@ public class PaymentRepositoryImpls implements PaymentRepository {
         return paymentJpaRepository.existsPaymentByPaymentClaimAndPaymentStatusIs(paymentClaim, paymentStatus);
     }
 
+    @Override
+    public void deleteAll() {
+        paymentJpaRepository.deleteAll();
+    }
+
 }

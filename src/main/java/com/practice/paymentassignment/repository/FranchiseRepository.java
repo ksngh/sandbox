@@ -10,6 +10,7 @@ public interface FranchiseRepository {
 
     /**
      * ID로 가맹점을 조회합니다.
+     *
      * @param id
      * @return Optional<Franchise>
      */
@@ -17,8 +18,14 @@ public interface FranchiseRepository {
 
     /**
      * 가맹점 정보를 저장합니다
+     *
      * @param franchise
      * @return Franchise
      */
     Franchise save(Franchise franchise);
+
+    /**
+     * 모든 franchise 엔티티를 삭제합니다.
+     */
+    void deleteAll();
 }

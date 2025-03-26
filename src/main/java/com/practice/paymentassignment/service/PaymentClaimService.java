@@ -8,6 +8,7 @@ public interface PaymentClaimService {
 
     /**
      * 결제 요청을 생성합니다.
+     *
      * @param paymentClaimCreateRequest
      * @return PaymentClaimCreate.Response
      */
@@ -15,6 +16,7 @@ public interface PaymentClaimService {
 
     /**
      * 결제 요청 정보를 조회합니다.
+     *
      * @param paymentClaimId
      * @return PaymentClaim
      */
@@ -22,6 +24,7 @@ public interface PaymentClaimService {
 
     /**
      * 결제 요청 상세정보를 조회합니다.
+     *
      * @param paymentClaimId
      * @return PaymentClaimDetails.Response
      */

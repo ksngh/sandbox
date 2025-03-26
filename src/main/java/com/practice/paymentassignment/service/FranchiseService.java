@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 public interface FranchiseService {
     /**
      * ID로 가맹점을 조회합니다.
+     *
      * @param id
      * @return Optional<Franchise>
      */
