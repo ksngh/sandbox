@@ -1,0 +1,20 @@
+type Query {
+    getPaymentClaimDetails(paymentClaimId: ID!): PaymentClaimDetailsResponse
+}
+
+type PaymentClaimDetailsResponse{
+    franchiseName : String!
+    amount: Int!
+}
+
+input PaymentClaimCreateRequest {
+    userId: ID!
+    amount: Int!
+    franchiseId: ID!
+}
+
+type Mutation {
+    createPaymentClaim(paymentClaimCreateRequest: PaymentClaimCreateRequest!): Boolean!
+    pay(paymentClaimId: ID!): Boolean!
+}
+

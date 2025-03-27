@@ -6,12 +6,14 @@ import com.practice.paymentassignment.model.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class PaymentClaimCreate {
 
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Setter
     public static class Request {
         private Long userId;
         private Long amount;

@@ -20,8 +20,9 @@ public class PaymentServiceImpls implements PaymentService {
     private final PaymentClaimService paymentClaimService;
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
-    public PaymentCreate.Response create(Long paymentClaimId) {
+//    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
+    public synchronized PaymentCreate.Response create(Long paymentClaimId) {
         PaymentClaim paymentClaim = paymentClaimService.getPaymentClaim(paymentClaimId);
         validatePaymentClaim(paymentClaim);
         Payment payment = Payment.of(paymentClaim);
