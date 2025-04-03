@@ -46,13 +46,14 @@ class PaymentServiceImplsTest {
     private PaymentRepository paymentRepository;
 
     private static final int THREAD_COUNT = 10;
-    private static final int EXECUTIONS_PER_THREAD = 10;
+    private static final int EXECUTIONS_PER_THREAD = 1000;
     private final AtomicInteger successCount = new AtomicInteger(0);
     private final AtomicInteger abortCount = new AtomicInteger(0);
     private final AtomicInteger duplicateCount = new AtomicInteger(0);
     private PaymentClaim savedPaymentClaim;
     private User savedUser;
     private Franchise savedFranchise;
+
 
 
     @BeforeEach
