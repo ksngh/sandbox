@@ -31,6 +31,7 @@ public class PaymentClaimServiceImpls implements PaymentClaimService {
                 franchise,
                 paymentClaimCreateRequest.getAmount()
         );
+        paymentClaimRepository.save(paymentClaim);
         return PaymentClaimCreate.Response.fromEntity(paymentClaim);
     }
 
